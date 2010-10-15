@@ -15,7 +15,7 @@ public class OrderDb {
     public List<Order> getOrders(int round) {
         List<Order> orders = new ArrayList<Order>();
         dbConn = new DbConnection();
-        String statement = "select * from fruit where round = ?";
+        String statement = "select * from citistar.order where round = ?";
         Connection conn = dbConn.getConnection();
         
         try {
@@ -25,12 +25,12 @@ public class OrderDb {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt(1);
-                String name = rs.getString(2);
-                long price = rs.getLong(3);
-                int amount = rs.getInt(4);
-                OrderType orderType = ((rs.getInt(5) == OrderType.Bid.ordinal()) ?
+                String name = rs.getString(3);
+                long price = rs.getLong(4);
+                int amount = rs.getInt(5);
+                OrderType orderType = ((rs.getInt(6) == OrderType.Bid.ordinal()) ?
                         OrderType.Bid : OrderType.Offer);
-                boolean isDealed = rs.getBoolean(6);
+                boolean isDealed = rs.getBoolean(7);
                 
                 Order order = new Order(id, round, name, price, amount, orderType,
                         isDealed);
@@ -54,7 +54,8 @@ public class OrderDb {
     
     public void insertOrders(List<Order> orders) {
         dbConn = new DbConnection();
-        String statement = "insert into order(round, name, price, amount, orderType, isDealed) values (?, ?, ?, ?, ?, ?);";
+        String statement = "insert into citistar.order(round, name, price, amount, orderType, isDealed) values (?, ?, ?, ?, ?, ?)";
+        System.out.println(statement);
         Connection conn = dbConn.getConnection();
         
         try {
@@ -66,7 +67,7 @@ public class OrderDb {
                 ps.setInt(4, order.getAmount());
                 ps.setInt(5, order.getOrderType().ordinal());
                 ps.setBoolean(6, order.isDealed());
-
+                System.out.println(ps.toString());
                 ps.executeUpdate();
                 ps.close();
             }
