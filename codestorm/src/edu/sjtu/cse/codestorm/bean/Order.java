@@ -1,7 +1,5 @@
 package edu.sjtu.cse.codestorm.bean;
 
-import java.util.*;
-
 public class Order {
 	private int id;
 	private int round;
