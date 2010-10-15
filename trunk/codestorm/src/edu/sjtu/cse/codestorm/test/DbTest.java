@@ -57,7 +57,7 @@ public class DbTest {
             System.out.println(item.getAmount());
         }
         
-        product.setAmount(1);
+        outProducts.get(0).setAmount(1);
         
         productDb.updateProducts(outProducts);
         List<Product> result = productDb.getProducts();

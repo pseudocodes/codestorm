@@ -12,7 +12,7 @@ public class DbConnection {
     private Connection conn = null;
     private final static String usrName = "mysql";
     private final static String pwd = "mysql";
-    private final static String dbUrl = "jdbc:mysql://127.0.0.1:3306/citistar";
+    private final static String dbUrl = "jdbc:mysql://192.168.1.146:3306/citistar";
 
     /**
      * Return the connection of db
