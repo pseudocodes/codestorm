@@ -3,18 +3,40 @@ package edu.sjtu.cse.codestorm.bean;
 import java.util.*;
 
 public class Order {
-	private int ID;
+	private int id;
 	private int round;
 	private String name;
 	private long price; // $1= 100
 	private int amount;
 	private OrderType orderType;
 	private boolean isDealed;
-	public int getID() {
-		return ID;
+	
+	public Order(int id, int round, String name, long price, int amount,
+	        OrderType orderType, boolean isDealed) {
+	    this.id = id;
+	    this.round = round;
+	    this.name = name;
+	    this.price = price;
+	    this.amount = amount;
+	    this.orderType = orderType;
+	    this.isDealed = isDealed;
 	}
-	public void setID(int iD) {
-		ID = iD;
+	
+	public Order(int round, String name, long price, int amount,
+            OrderType orderType, boolean isDealed) {
+        this.round = round;
+        this.name = name;
+        this.price = price;
+        this.amount = amount;
+        this.orderType = orderType;
+        this.isDealed = isDealed;
+    }
+	
+	public int getID() {
+		return id;
+	}
+	public void setID(int id) {
+		this.id = id;
 	}
 	public int getRound() {
 		return round;
@@ -52,6 +74,4 @@ public class Order {
 	public void setDealed(boolean isDealed) {
 		this.isDealed = isDealed;
 	}
-	
-	
 }
