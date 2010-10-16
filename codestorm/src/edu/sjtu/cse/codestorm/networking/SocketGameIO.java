@@ -11,7 +11,7 @@
 // $DateTime: 2007/06/14 18:52:05 $
 ///////////////////////////////////////////////////////////////////////////////
 
-package edu.sjtu.cse.codestorm.sampleproject;
+package edu.sjtu.cse.codestorm.networking;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -20,6 +20,7 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
+
 
 /**
  * TODO: type comment.
@@ -41,7 +42,7 @@ public class SocketGameIO implements IGameIO
   }
   
   /**
-   * @see com.ms.cc.IGameIO#read()
+   * @see edu.sjtu.cse.codestorm.networking.ms.cc.IGameIO#read()
    */
   public String read() throws IOException
   {
@@ -49,7 +50,7 @@ public class SocketGameIO implements IGameIO
   }
 
   /**
-   * @see com.ms.cc.IGameIO#send(java.lang.String)
+   * @see edu.sjtu.cse.codestorm.networking.ms.cc.IGameIO#send(java.lang.String)
    */
   public void send(String msg) throws IOException
   {

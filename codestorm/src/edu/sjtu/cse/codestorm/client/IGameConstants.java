@@ -11,7 +11,7 @@
 // $DateTime: 2007/06/14 18:52:05 $
 ///////////////////////////////////////////////////////////////////////////////
 
-package edu.sjtu.cse.codestorm.sampleproject;
+package edu.sjtu.cse.codestorm.client;
 
 /**
  * TODO: type comment.
