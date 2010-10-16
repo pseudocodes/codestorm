@@ -3,12 +3,8 @@ package edu.sjtu.cse.codestorm.db;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.List;
 
 import edu.sjtu.cse.codestorm.bean.Capital;
-import edu.sjtu.cse.codestorm.bean.Order;
-import edu.sjtu.cse.codestorm.bean.OrderType;
 
 public class CapitalDb {
     private DbConnection dbConn;

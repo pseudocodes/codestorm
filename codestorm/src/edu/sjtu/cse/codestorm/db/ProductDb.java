@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.sjtu.cse.codestorm.bean.Capital;
 import edu.sjtu.cse.codestorm.bean.Product;
 
 public class ProductDb {
