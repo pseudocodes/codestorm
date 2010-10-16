@@ -30,6 +30,14 @@ public class Order {
         this.isDealed = isDealed;
     }
 	
+	public Order(int round, String name, long price, int amount,
+            OrderType orderType) {
+        this.round = round;
+        this.name = name;
+        this.price = price;
+        this.amount = amount;
+        this.orderType = orderType;
+    }
 	public int getID() {
 		return id;
 	}
