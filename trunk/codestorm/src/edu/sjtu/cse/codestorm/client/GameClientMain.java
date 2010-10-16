@@ -11,9 +11,13 @@
 // $DateTime: 2007/06/14 18:52:05 $
 ///////////////////////////////////////////////////////////////////////////////
 
-package edu.sjtu.cse.codestorm.sampleproject;
+package edu.sjtu.cse.codestorm.client;
 
 import org.json.simple.JSONArray;
+
+import edu.sjtu.cse.codestorm.networking.SocketGameIO;
+import edu.sjtu.cse.codestorm.strategy.ITradingStrategy;
+import edu.sjtu.cse.codestorm.strategy.RandomTradingStrategy;
 
 /**
  * Plays the game

@@ -11,10 +11,12 @@
 // $DateTime: 2007/06/14 18:52:05 $
 ///////////////////////////////////////////////////////////////////////////////
 
-package edu.sjtu.cse.codestorm.sampleproject;
+package edu.sjtu.cse.codestorm.strategy;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+
+import edu.sjtu.cse.codestorm.client.IGameConstants;
 
 /**
  * TODO: type comment.
