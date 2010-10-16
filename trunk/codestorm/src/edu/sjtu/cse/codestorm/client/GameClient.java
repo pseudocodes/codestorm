@@ -14,12 +14,17 @@
 package edu.sjtu.cse.codestorm.client;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 
+import edu.sjtu.cse.codestorm.bean.Order;
+import edu.sjtu.cse.codestorm.bean.OrderType;
+import edu.sjtu.cse.codestorm.db.OrderDb;
 import edu.sjtu.cse.codestorm.networking.IGameIO;
 
 /**
@@ -43,7 +48,7 @@ public class GameClient implements IGameConstants {
 	// get one!
 	private int currentRound = 1;
 	private int finalRound;
-	
+
 	private double cash;
 
 	public double getCash() {
@@ -98,8 +103,7 @@ public class GameClient implements IGameConstants {
 
 	public boolean readWelcome() {
 		JSONObject msg = readMsg(WELCOME);
-		if (msg == null)
-		{
+		if (msg == null) {
 			return false;
 		}
 		finalRound = ((Long) msg.get(ROUND_TOTAL)).intValue();
@@ -132,8 +136,40 @@ public class GameClient implements IGameConstants {
 		clearPreviousRoundState();
 		currentSupply = (JSONArray) msg.get(SUPPLY);
 		currentDemand = (JSONArray) msg.get(DEMAND);
-		//just part of the same hack
-		currentRound = ((Long) msg.get(ROUND_NUMBER)).intValue()+1;
+		// just part of the same hack
+		currentRound = ((Long) msg.get(ROUND_NUMBER)).intValue() + 1;
+
+		// shanshan
+		// store the demand and supply info into db
+		new Thread() {
+			public void run() {
+				List<Order> orders = new ArrayList<Order>();
+				Order order = null;
+				for (int i = 0; i < currentSupply.size(); i++) {
+					JSONObject bid = (JSONObject) currentSupply.get(i);
+					order = new Order(
+							currentRound,
+							(String) bid.get(PRODUCT_ID),
+							(int) (((Number) bid.get(PRICE)).doubleValue() * 100),
+							((Number) bid.get(QUANTITY)).intValue(),
+							OrderType.Bid);
+					orders.add(order);
+				}
+
+				for (int i = 0; i < currentDemand.size(); i++) {
+					JSONObject bid = (JSONObject) currentDemand.get(i);
+					order = new Order(
+							currentRound,
+							(String) bid.get(PRODUCT_ID),
+							(int) (((Number) bid.get(PRICE)).doubleValue() * 100),
+							(int) (((Number) bid.get(QUANTITY)).doubleValue()),
+							OrderType.Offer);
+					orders.add(order);
+				}
+				OrderDb orderDb = new OrderDb();
+				orderDb.insertOrders(orders);
+			}
+		}.start();
 		// note this ignores the portfolio attribute
 		return msg;
 	}
@@ -170,7 +206,7 @@ public class GameClient implements IGameConstants {
 		JSONObject o;
 		try {
 			o = (JSONObject) JSONValue.parse(io.read());
-			LOGGER.info(String.format("Read message '%s'", o));
+			LOGGER.info(String.format("Read " + root + " message '%s'", o));
 		} catch (IOException e) {
 			throw new RuntimeException("caught IOException trying to read "
 					+ root, e);

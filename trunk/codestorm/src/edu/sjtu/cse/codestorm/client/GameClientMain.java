@@ -29,10 +29,10 @@ public class GameClientMain
 {
   public static void main(String[] args) throws Exception
   {
-    String teamName = "Jeff";
-    String teamKey = "abc123";
-    String host = "vps2.mscc08.com";
-    String portStr = "8931";
+    String teamName = "threesmokebarrels";
+    String teamKey = "peer58reub";
+    String host = "114.80.213.55";
+    String portStr = "5730";
 
     if (args.length > 0)
     {
